@@ -20,16 +20,14 @@ public class DietPlan {
         HashMap<String, HashMap<String, String>> mealPlan = new HashMap<>();
         mealPlan.put(dietPlanName, new HashMap<>());
 
+        Food restrictedFoods = foodFactory.getFood(dietPlanName);
+        HashSet<String> restrictedFoodList = restrictedFoods.getFoodList();
+
         for (String category : foodCategories) {
             Food foodType = foodFactory.getFood(category);
             HashSet<String> fullFoodList = foodType.getFoodList();
-
-            Food restrictedFoods = foodFactory.getFood(dietPlanName);
-            HashSet<String> restrictedFoodList = restrictedFoods.getFoodList();
-
             ArrayList<String> approvedFoodList = removeRestrictedFoods(fullFoodList, restrictedFoodList);
             String foodSelection = selectRandomItem(approvedFoodList);
-
             mealPlan.get(dietPlanName).put(category, foodSelection);
         }
         return mealPlan;
