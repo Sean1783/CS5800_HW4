@@ -1,4 +1,6 @@
-package com.concretefood;
+package com.concretefood.dietplanrestrictedfoods;
+
+import com.concretefood.Food;
 
 import java.util.HashSet;
 import java.util.List;

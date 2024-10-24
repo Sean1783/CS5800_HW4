@@ -1,25 +1,30 @@
-package com.dietplan;
+package com.macronutrient;
 
 import com.concretefood.Food;
 import com.foodfactory.FoodFactory;
 
 import java.util.*;
 
-public class DietPlan {
+public class Macronutrient {
 
     private final ArrayList<String> foodCategories = new ArrayList<String>(Arrays.asList(
             "Carb", "Protein", "Fat"));
-    private FoodFactory foodFactory;
-    public DietPlan() {
-        foodFactory = new FoodFactory();
+    private static Macronutrient macronutrient = null;
+
+    private Macronutrient(){}
+
+    public static Macronutrient getInstance() {
+        if (macronutrient == null) {
+            macronutrient = new Macronutrient();
+        }
+        return macronutrient;
     }
 
     // Input validation needed.
-    public HashMap<String, HashMap<String, String>> makeMealPlan(String dietPlanName) {
-
+    public HashMap<String, HashMap<String, String>> createMeal(String dietPlanName) {
         HashMap<String, HashMap<String, String>> mealPlan = new HashMap<>();
         mealPlan.put(dietPlanName, new HashMap<>());
-
+        FoodFactory foodFactory = FoodFactory.getInstance();
         Food restrictedFoods = foodFactory.getFood(dietPlanName);
         HashSet<String> restrictedFoodList = restrictedFoods.getFoodList();
 
