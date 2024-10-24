@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Protein extends Food {
     @Override
-    public HashSet<String> getFoodOptionsList() {
+    public HashSet<String> getFoodList() {
         return new HashSet<>(List.of("Fish", "Chicken", "Beef", "Tofu"));
     }
 }

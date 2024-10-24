@@ -1,9 +1,6 @@
 package com.foodfactory;
 
-import com.concretefood.Carb;
-import com.concretefood.Fat;
-import com.concretefood.Food;
-import com.concretefood.Protein;
+import com.concretefood.*;
 
 public class FoodFactory {
 
@@ -12,6 +9,9 @@ public class FoodFactory {
             case "Carb" -> new Carb();
             case "Fat" -> new Fat();
             case "Protein" -> new Protein();
+            case "Paleo" -> new RestrictedPaleoFoods();
+            case "Vegan" -> new RestrictedVeganFoods();
+            case "Nut Allergy" -> new RestrictedNutFoods();
             default -> null;
         };
     }
