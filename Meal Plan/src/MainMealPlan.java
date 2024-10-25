@@ -1,7 +1,7 @@
 import com.dietplan.DietPlan;
 
 
-public class Main {
+public class MainMealPlan {
     public static void main(String[] args) {
 
         DietPlan d = new DietPlan();

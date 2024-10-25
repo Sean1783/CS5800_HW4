@@ -2,7 +2,7 @@ import com.pizza.Pizza;
 import com.pizza.PizzaBuilder;
 import com.pizza.PizzaChain;
 
-public class Main {
+public class MainBuilder {
     public static void main(String[] args) {
 
         PizzaChain pizzaHut = new PizzaChain("Pizza Hut");
