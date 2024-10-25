@@ -29,6 +29,13 @@ public class PizzaChain {
         return false;
     }
 
+    public void clearPizzaList() {
+        for (Pizza pizza : pizzas) {
+            pizza.setChain(" - ");
+        }
+        pizzas.clear();
+    }
+
     public void dump() {
         for (Pizza pizza : pizzas) {
             pizza.eat();
