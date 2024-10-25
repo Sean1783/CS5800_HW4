@@ -1,9 +1,6 @@
 package com.pizza;
 
-import com.pizza.Pizza.PizzaBuilder;
-
 public interface PizzaBuilderInterface {
-    public PizzaBuilder withTopping(String topping);
     public PizzaBuilder withPepperoni();
     public PizzaBuilder withSausage();
     public PizzaBuilder withMushrooms();
@@ -20,7 +17,5 @@ public interface PizzaBuilderInterface {
     public PizzaBuilder withPesto();
     public PizzaBuilder withSpicyPork();
     public PizzaBuilder withHamAndPineapple();
-
     public Pizza build();
-
 }

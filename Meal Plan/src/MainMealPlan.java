@@ -1,6 +1,6 @@
 import com.macronutrient.Macronutrient;
 
-public class Main {
+public class MainMealPlan {
     public static void main(String[] args) {
 
         Macronutrient macronutrient = Macronutrient.getInstance();
