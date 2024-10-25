@@ -8,6 +8,7 @@ public class FoodFactory {
     private static FoodFactory foodFactory = null;
 
     private FoodFactory() {}
+
     public static FoodFactory getInstance() {
         if (foodFactory == null) {
             foodFactory = new FoodFactory();

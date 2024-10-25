@@ -3,11 +3,15 @@ package com.macronutrient;
 import com.concretefood.Food;
 import com.foodfactory.FoodFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Random;
 
 public class Macronutrient {
 
-    private final ArrayList<String> foodCategories = new ArrayList<String>(Arrays.asList(
+    private final ArrayList<String> foodCategories = new ArrayList<>(Arrays.asList(
             "Carb", "Protein", "Fat"));
     private static Macronutrient macronutrient = null;
 

@@ -1,6 +1,5 @@
 import com.macronutrient.Macronutrient;
 
-
 public class Main {
     public static void main(String[] args) {
 
@@ -10,10 +9,10 @@ public class Main {
         Customer customerNutAllergy = new Customer("Kernel", "Nut Allergy");
         Customer customerNoRestrictions = new Customer("Omnivore", "No restrictions");
 
-        System.out.println(macronutrient.createMeal(customerPaleo.dietPlan));
-        System.out.println(macronutrient.createMeal(customerVegan.dietPlan));
-        System.out.println(macronutrient.createMeal(customerNutAllergy.dietPlan));
-        System.out.println(macronutrient.createMeal(customerNoRestrictions.dietPlan));
+        System.out.println(customerPaleo.name + " " + macronutrient.createMeal(customerPaleo.dietPlan));
+        System.out.println(customerVegan.name + " " + macronutrient.createMeal(customerVegan.dietPlan));
+        System.out.println(customerNutAllergy.name + " " + macronutrient.createMeal(customerNutAllergy.dietPlan));
+        System.out.println(customerNoRestrictions.name + " " + macronutrient.createMeal(customerNoRestrictions.dietPlan));
 
     }
 }
