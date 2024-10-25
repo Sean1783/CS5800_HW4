@@ -14,6 +14,10 @@ public class Pizza {
         this.chain = " - ";
     }
 
+    public List<String> getToppings() {
+        return new ArrayList<>(toppings);
+    }
+
     void setChain(String chain) {
         this.chain = chain;
     }
