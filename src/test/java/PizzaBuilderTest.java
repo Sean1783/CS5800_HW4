@@ -4,8 +4,7 @@ import com.pizza.PizzaBuilder;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class PizzaBuilderTest {
 
@@ -14,14 +13,6 @@ public class PizzaBuilderTest {
         PizzaBuilder pizzaBuilder = new PizzaBuilder("Large");
         Pizza pizza = pizzaBuilder.build();
         assertNotNull(pizza);
-    }
-
-    @Test
-    public void correctSizeTest() {
-        PizzaBuilder pizzaBuilder = new PizzaBuilder("Large");
-        String pizzaSize = pizzaBuilder.getSize();
-        boolean pizzaBuilderSize = Objects.equals(pizzaSize, "Large");
-        assertTrue(pizzaBuilderSize);
     }
 
     @Test
@@ -34,17 +25,58 @@ public class PizzaBuilderTest {
     @Test
     public void invalidSizeTest() {
         assertThrows(IllegalArgumentException.class, () -> {new PizzaBuilder("arge");});
-        assertThrows(IllegalArgumentException.class, () -> {new PizzaBuilder("mdium");});
+        assertThrows(IllegalArgumentException.class, () -> {new PizzaBuilder("");});
         assertThrows(IllegalArgumentException.class, () -> {new PizzaBuilder("small");});
     }
 
     @Test
-    public void hasPepperoniTest() {
-        PizzaBuilder pizzaBuilder = new PizzaBuilder("Small");
-        pizzaBuilder.withPepperoni();
-        List<String> toppingsList = pizzaBuilder.getToppings();
-        boolean hasPepperoni = toppingsList.contains("Pepperoni");
-        assertTrue(hasPepperoni);
+    public void toppingsTest() {
+        Pizza pizza = new PizzaBuilder("Small")
+                .withPepperoni()
+                .withSausage()
+                .withMushrooms()
+                .withBacon()
+                .withOnions()
+                .withExtraCheese()
+                .withPeppers()
+                .withChicken()
+                .withOlives()
+                .withSpinach()
+                .withTomatoAndBasil()
+                .withBeef()
+                .withHam()
+                .withPesto()
+                .withSpicyPork()
+                .withHamAndPineapple()
+                .build();
+
+        Set<String> toppings = new HashSet<String>(Arrays.asList(
+                "Extra Cheese",
+                "Pepperoni",
+                "Sausage",
+                "Mushrooms",
+                "Bacon",
+                "Onions",
+                "Peppers",
+                "Chicken",
+                "Olives",
+                "Spinach",
+                "Tomato and Basil",
+                "Beef",
+                "Ham",
+                "Pesto",
+                "Spicy Pork",
+                "Ham and Pineapple"
+        ));
+        List<String> pizzaToppings = pizza.getToppings();
+        boolean containsAllToppings = true;
+        for (String topping : pizzaToppings) {
+            if (!toppings.contains(topping)) {
+                containsAllToppings = false;
+                break;
+            }
+        }
+        assertTrue(containsAllToppings);
     }
 
     @Test

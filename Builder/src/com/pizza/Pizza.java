@@ -18,6 +18,14 @@ public class Pizza {
         return new ArrayList<>(toppings);
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public String getChain() {
+        return this.chain;
+    }
+
     void setChain(String chain) {
         this.chain = chain;
     }
