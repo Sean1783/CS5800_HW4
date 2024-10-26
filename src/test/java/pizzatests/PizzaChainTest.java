@@ -1,3 +1,5 @@
+package pizzatests;
+
 import com.pizza.Pizza;
 import com.pizza.PizzaBuilder;
 import com.pizza.PizzaChain;
@@ -20,6 +22,7 @@ public class PizzaChainTest {
         Pizza pizza = new PizzaBuilder("Small").build();
         PizzaChain chain = new PizzaChain("Test Chain");
         assertTrue(chain.addPizza(pizza));
+        assertFalse(chain.addPizza(pizza));
     }
 
     @Test
@@ -28,6 +31,7 @@ public class PizzaChainTest {
         PizzaChain chain = new PizzaChain("Test Chain");
         chain.addPizza(pizza);
         assertTrue(chain.removePizza(pizza));
+        assertFalse(chain.removePizza(pizza));
     }
 
     @Test
@@ -38,7 +42,7 @@ public class PizzaChainTest {
             chain.addPizza(pizza);
         }
         chain.clearPizzaList();
-        assertNull(chain.getPizzas());
+        assertTrue(chain.getPizzas().isEmpty());
     }
 
     @Test
@@ -46,7 +50,7 @@ public class PizzaChainTest {
         Pizza pizza = new PizzaBuilder("Small").build();
         PizzaChain chain = new PizzaChain("Test Chain");
         chain.addPizza(pizza);
-        ArrayList<Pizza> pizzas = chain.getPizzas();
-        assertFalse(pizzas.contains(pizza));
+        ArrayList<Pizza> copiedPizzaList = chain.getPizzas();
+        assertFalse(copiedPizzaList.contains(pizza));
     }
 }

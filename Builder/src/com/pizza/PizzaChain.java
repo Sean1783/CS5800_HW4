@@ -13,25 +13,21 @@ public class PizzaChain {
     }
 
     public ArrayList<Pizza> getPizzas() {
-        if (pizzas == null) {
-            return null;
-        }
         ArrayList<Pizza> pizzasList = new ArrayList<>();
-        for (Pizza pizza : pizzas) {
-            String size = pizza.getSize();
-            List<String> toppings = pizza.getToppings();
-            Pizza copiedPizza = new Pizza(size, toppings);
-            copiedPizza.setChain(chainName);
-            pizzasList.add(copiedPizza);
+        if (!pizzas.isEmpty()) {
+            for (Pizza pizza : pizzas) {
+                String size = pizza.getSize();
+                List<String> toppings = pizza.getToppings();
+                Pizza copiedPizza = new Pizza(size, toppings);
+                copiedPizza.setChain(chainName);
+                pizzasList.add(copiedPizza);
+            }
         }
         return pizzasList;
     }
 
     public boolean addPizza(Pizza pizza) {
-        if (pizzas == null) {
-            pizzas = new ArrayList<>();
-        }
-        else if (pizzas.contains(pizza)) {
+        if (pizzas.contains(pizza)) {
             return false;
         }
         pizza.setChain(chainName);
@@ -40,27 +36,20 @@ public class PizzaChain {
     }
 
     public boolean removePizza(Pizza pizza) {
-        if (pizzas == null) {
-            return false;
-        }
-        else if (pizzas.contains(pizza)) {
+        if (pizzas.contains(pizza)) {
             pizza.setChain(" - ");
             pizzas.remove(pizza);
-            if (pizzas.isEmpty()) {
-                pizzas = null;
-            }
             return true;
         }
         return false;
     }
 
     public void clearPizzaList() {
-        if (pizzas != null) {
+        if (!pizzas.isEmpty()) {
             for (Pizza pizza : pizzas) {
                 pizza.setChain(" - ");
             }
             pizzas.clear();
-            pizzas = null;
         }
     }
 

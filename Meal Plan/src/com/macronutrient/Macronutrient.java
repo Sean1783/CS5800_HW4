@@ -15,7 +15,7 @@ public class Macronutrient {
             "Carb", "Protein", "Fat"));
     private static Macronutrient macronutrient = null;
 
-    private Macronutrient(){}
+    private Macronutrient() {}
 
     public static Macronutrient getInstance() {
         if (macronutrient == null) {
@@ -42,13 +42,13 @@ public class Macronutrient {
         return mealPlan;
     }
 
-    private ArrayList<String> removeRestrictedFoods(HashSet<String> fullFoodList, HashSet<String> restrictedFoods) {
+    public ArrayList<String> removeRestrictedFoods(HashSet<String> fullFoodList, HashSet<String> restrictedFoods) {
         ArrayList<String> approvedFoodsList = new ArrayList<>(fullFoodList);
         approvedFoodsList.removeAll(restrictedFoods);
         return approvedFoodsList;
     }
 
-    private String selectRandomItem(ArrayList<String> approvedFoodsList) {
+    public String selectRandomItem(ArrayList<String> approvedFoodsList) {
         Random random = new Random();
         int randomIndex = random.nextInt(approvedFoodsList.size());
         return approvedFoodsList.get(randomIndex);
