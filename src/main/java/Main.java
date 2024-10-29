@@ -79,7 +79,7 @@ public class Main {
                 .withExtraCheese()
                 .build();
         littleCaesars.addPizza(smallSixTopping);
-        System.out.print(smallSixTopping.eat());
+        System.out.println(smallSixTopping.eat());
 
         PizzaChain dominos = new PizzaChain("Dominos");
         Pizza smallOneTopping = new PizzaBuilder("Small")
