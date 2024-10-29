@@ -40,6 +40,7 @@ public class Main {
                 .withPesto()
                 .build();
         pizzaHut.addPizza(largeNineTopping);
+        System.out.println(largeNineTopping.eat());
         pizzaHut.clearPizzaList();
 
         // Builder - #2
