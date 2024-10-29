@@ -9,8 +9,19 @@ public class PizzaBuilder implements PizzaBuilderInterface {
     private final String size;
 
     public PizzaBuilder(String size) {
+        if (size == null || !(size.equals("Small") || size.equals("Medium") || size.equals("Large"))) {
+            throw new IllegalArgumentException("Size must be 'Small', 'Medium', or 'Large'");
+        }
         this.size = size;
         this.toppings = new ArrayList<>();
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public List<String> getToppings() {
+        return new ArrayList<>(toppings);
     }
 
     @Override

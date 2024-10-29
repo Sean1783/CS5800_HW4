@@ -14,16 +14,28 @@ public class Pizza {
         this.chain = " - ";
     }
 
+    public List<String> getToppings() {
+        return new ArrayList<>(toppings);
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public String getChain() {
+        return this.chain;
+    }
+
     void setChain(String chain) {
         this.chain = chain;
     }
 
-    public void eat() {
+    public String eat() {
         StringBuilder pizzaDetails = new StringBuilder();
         pizzaDetails.append(chain + " - " + size + " - ");
         for (String topping : toppings) {
             pizzaDetails.append(topping).append(" ");
         }
-        System.out.println(pizzaDetails);
+        return pizzaDetails.toString();
     }
 }
