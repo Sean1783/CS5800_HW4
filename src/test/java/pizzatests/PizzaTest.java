@@ -8,9 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 public class PizzaTest {
@@ -26,6 +24,7 @@ public class PizzaTest {
         assertFalse(emptyToppings);
     }
 
+    @Test
     public void setChainTest() {
         String chainName = "Test Chain";
         PizzaChain chain = new PizzaChain(chainName);
@@ -34,12 +33,14 @@ public class PizzaTest {
         assertEquals(pizza.getChain(), chainName);
     }
 
+    @Test
     public void unsetChainTest() {
         String chainName = "Test Chain";
         PizzaChain chain = new PizzaChain(chainName);
-        Pizza pizza = new PizzaBuilder("Small").build();
-        chain.removePizza(pizza);
-        assertNotEquals(pizza.getChain(), chainName);
+        Pizza pizzaOne = new PizzaBuilder("Small").build();
+        chain.addPizza(pizzaOne);
+        chain.removePizza(pizzaOne);
+        assertNotEquals(pizzaOne.getChain(), chainName);
     }
 
     @Test

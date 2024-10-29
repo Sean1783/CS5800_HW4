@@ -30,12 +30,12 @@ public class Pizza {
         this.chain = chain;
     }
 
-    public void eat() {
+    public String eat() {
         StringBuilder pizzaDetails = new StringBuilder();
         pizzaDetails.append(chain + " - " + size + " - ");
         for (String topping : toppings) {
             pizzaDetails.append(topping).append(" ");
         }
-        System.out.println(pizzaDetails);
+        return pizzaDetails.toString();
     }
 }

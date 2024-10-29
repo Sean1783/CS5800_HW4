@@ -5,7 +5,6 @@ import com.pizza.PizzaBuilder;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.*;
 
 public class PizzaBuilderTest {
@@ -18,14 +17,14 @@ public class PizzaBuilderTest {
     }
 
     @Test
-    public void validSizeTest() {
+    public void assertValidSizeTest() {
         assertDoesNotThrow(() -> {new PizzaBuilder("Large");});
         assertDoesNotThrow(() -> {new PizzaBuilder("Medium");});
         assertDoesNotThrow(() -> {new PizzaBuilder("Small");});
     }
 
     @Test
-    public void invalidSizeTest() {
+    public void assertInvalidSizeTest() {
         assertThrows(IllegalArgumentException.class, () -> {new PizzaBuilder("arge");});
         assertThrows(IllegalArgumentException.class, () -> {new PizzaBuilder("");});
         assertThrows(IllegalArgumentException.class, () -> {new PizzaBuilder("small");});

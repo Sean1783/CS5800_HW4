@@ -18,13 +18,13 @@ public class FoodFactory {
 
     public Food getFood(String foodType) {
         return switch (foodType) {
-            case "Carb" -> new Carb();
-            case "Fat" -> new Fat();
-            case "Protein" -> new Protein();
-            case "Paleo" -> new RestrictedPaleoFoods();
-            case "Vegan" -> new RestrictedVeganFoods();
-            case "Nut Allergy" -> new RestrictedNutFoods();
-            case "No restrictions" -> new RestrictedNoRestrictions();
+            case "Carb" -> new Carb("Carb");
+            case "Fat" -> new Fat("Fat");
+            case "Protein" -> new Protein("Protein");
+            case "Paleo" -> new RestrictedPaleoFoods("Paleo");
+            case "Vegan" -> new RestrictedVeganFoods("Vegan");
+            case "Nut Allergy" -> new RestrictedNutFoods("Nut Allergy");
+            case "No restrictions" -> new RestrictedNoRestrictions("No restrictions");
             default -> null;
         };
     }

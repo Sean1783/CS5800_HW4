@@ -8,45 +8,83 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MacroNutrientTest {
 
     @Test
-    public void SingletonTest() {
+    public void singletonTest() {
         Macronutrient macronutrientOne = Macronutrient.getInstance();
         Macronutrient macronutrientTwo = Macronutrient.getInstance();
-        assertEquals(macronutrientOne, macronutrientTwo);
+        boolean sameInstance = macronutrientOne == macronutrientTwo;
+        macronutrientTwo = null;
+        Macronutrient macronutrientThree = Macronutrient.getInstance();
+        boolean differentInstance = macronutrientThree != macronutrientTwo;
+        assertTrue(sameInstance);
+        assertTrue(differentInstance);
     }
 
     @Test
-    public void SelectRandomFoodTest() {
+    public void selectRandomFoodTest() {
         Macronutrient macronutrient = Macronutrient.getInstance();
         FoodFactory foodFactory = FoodFactory.getInstance();
-        Food foods = foodFactory.getFood("Carb");
-        HashSet<String> foodSet = foods.getFoodList();
-        ArrayList<String> foodList = new ArrayList<>(foodSet);
-        String randomFood = macronutrient.selectRandomItem(foodList);
-        assertTrue(foodSet.contains(randomFood));
-    }
 
-    @Test
-    public void RemoveFoodsTest() {
-        Macronutrient macronutrient = Macronutrient.getInstance();
-        FoodFactory foodFactory = FoodFactory.getInstance();
-        Food foods = foodFactory.getFood("Carb");
-        HashSet<String> foodSet = foods.getFoodList();
-        Food restrictedFoods = foodFactory.getFood("Paleo");
-        HashSet<String> restrictedFoodSet = restrictedFoods.getFoodList();
-        ArrayList<String> approvedFoodList = macronutrient.removeRestrictedFoods(foodSet, restrictedFoodSet);
-        boolean doesNotContainRestrictedFoods = true;
-        for (String restrictedFood : restrictedFoodSet) {
-            if (approvedFoodList.contains(restrictedFood)) {
-                doesNotContainRestrictedFoods = false;
+        ArrayList<String> foodCategories = macronutrient.getFoodCategories();
+        boolean foodSetContainsFood = true;
+
+        for (String category : foodCategories) {
+            Food foods = foodFactory.getFood(category);
+            HashSet<String> foodSet = foods.getFoodList();
+            ArrayList<String> foodList = new ArrayList<>(foodSet);
+            String randomFood = macronutrient.selectRandomItem(foodList);
+            foodSetContainsFood = foodSet.contains(randomFood);
+            if (!foodSetContainsFood) {
                 break;
+            }
+        }
+        assertTrue(foodSetContainsFood);
+    }
+
+    @Test
+    public void inputValidationTest() {
+        Macronutrient macronutrient = Macronutrient.getInstance();
+        assertThrows(IllegalArgumentException.class, () -> macronutrient.createMeal(""));
+    }
+
+    @Test
+    public void removeFoodsTest() {
+        Macronutrient macronutrient = Macronutrient.getInstance();
+        FoodFactory foodFactory = FoodFactory.getInstance();
+
+        ArrayList<String> foodCategories = macronutrient.getFoodCategories();
+        ArrayList<String> dietPlans = macronutrient.getDietPlans();
+
+        boolean doesNotContainRestrictedFoods = true;
+
+        outerLoop:
+        for (String dietPlan : dietPlans) {
+            Food restrictedFoods = foodFactory.getFood(dietPlan);
+            HashSet<String> restrictedFoodSet = restrictedFoods.getFoodList();
+            for (String foodCategory : foodCategories) {
+                Food completeFoods = foodFactory.getFood(foodCategory);
+                HashSet<String> completeFoodsSet = completeFoods.getFoodList();
+                ArrayList<String> approvedFoodList = macronutrient.removeRestrictedFoods(completeFoodsSet, restrictedFoodSet);
+                doesNotContainRestrictedFoods = checkIfRestrictedInApproved(restrictedFoodSet, approvedFoodList);
+                if (!doesNotContainRestrictedFoods) {
+                    break outerLoop;
+                }
             }
         }
         assertTrue(doesNotContainRestrictedFoods);
     }
+
+    public boolean checkIfRestrictedInApproved(HashSet<String> restrictedFoodSet, ArrayList<String> approvedFoodList) {
+        for (String restrictedFood : restrictedFoodSet) {
+            if (approvedFoodList.contains(restrictedFood)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

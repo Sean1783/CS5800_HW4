@@ -11,9 +11,11 @@ import java.util.Random;
 
 public class Macronutrient {
 
+    private static Macronutrient macronutrient = null;
     private final ArrayList<String> foodCategories = new ArrayList<>(Arrays.asList(
             "Carb", "Protein", "Fat"));
-    private static Macronutrient macronutrient = null;
+    private final ArrayList<String> dietPlans=  new ArrayList<>(Arrays.asList(
+            "Paleo", "Vegan", "Nut Allergy", "No restrictions"));
 
     private Macronutrient() {}
 
@@ -24,8 +26,19 @@ public class Macronutrient {
         return macronutrient;
     }
 
-    // Input validation needed.
+    public ArrayList<String> getFoodCategories() {
+        return new ArrayList<>(foodCategories);
+    }
+
+    public ArrayList<String> getDietPlans() {
+        return new ArrayList<>(dietPlans);
+    }
+
     public HashMap<String, HashMap<String, String>> createMeal(String dietPlanName) {
+        if (!dietPlans.contains(dietPlanName)) {
+            throw new IllegalArgumentException("Unknown diet plan name: " + dietPlanName);
+        }
+
         HashMap<String, HashMap<String, String>> mealPlan = new HashMap<>();
         mealPlan.put(dietPlanName, new HashMap<>());
         FoodFactory foodFactory = FoodFactory.getInstance();

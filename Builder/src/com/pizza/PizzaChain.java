@@ -55,7 +55,7 @@ public class PizzaChain {
 
     public void dump() {
         for (Pizza pizza : pizzas) {
-            pizza.eat();
+            System.out.println(pizza.eat());
         }
     }
 
